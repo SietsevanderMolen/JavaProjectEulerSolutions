@@ -19,7 +19,8 @@ package projecteuler;
 import projecteuler.util.Stopwatch;
 
 /**
- *
+ * An abstract description of a Project Euler problem.
+ * This should make the actual problem classes a bit cleaner.
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
 abstract class AbstractProblem {

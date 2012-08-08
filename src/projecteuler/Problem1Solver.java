@@ -28,7 +28,7 @@ import projecteuler.util.Stopwatch;
 public class Problem1Solver extends AbstractProblem {
 
 	/**
-	 * The dumb way to solve a problem like this
+	 * The obvious way to solve a problem like this
 	 *
 	 * @return The sum of all multiples of 3 or 5 below 1000
 	 */
