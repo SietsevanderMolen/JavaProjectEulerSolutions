@@ -18,6 +18,7 @@ package projecteuler;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import projecteuler.util.Triplet;
 
 /**
  * A Pythagorean triplet is a set of three natural numbers, a  b  c, for which,
@@ -41,7 +42,8 @@ public class Problem9Solver extends AbstractProblem {
 		for (int m = 2; m < 25; m++) {
 			for (int n = 1; n < 25; n++) {
 				if (m > n) {
-					PythagoreanTriplet triplet = new PythagoreanTriplet(m, n);
+					Triplet triplet = new Triplet();
+					triplet.createPythagoreanTriplet(m, n);
 					
 					if (triplet.getSum() == 1000) {
 						return triplet.getProduct();
@@ -50,46 +52,5 @@ public class Problem9Solver extends AbstractProblem {
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * A class describing a triplet of longs
-	 * 
-	 * @author Sietse van der Molen <sietse@vdmolen.eu>
-	 */
-	class PythagoreanTriplet {
-
-		private long a, b, c;
-
-		/**
-		 * This constructor generates a Pythagorean triplet using Euclid's method:<br>
-		 * a = m² - n²<br>
-		 * b = 2mn<br>
-		 * c = m² + n²<br>
-		 * 
-		 * @param m
-		 * @param n
-		 */
-		public PythagoreanTriplet(long m, long n) {
-			if (m > n) {
-				a = (m * m) - (n * n);
-				b = (2 * m) * n;
-				c = (m * m) + (n * n);
-			} else {
-				try {
-					throw new Exception("m should > n");
-				} catch (Exception ex) {
-					Logger.getLogger(Problem9Solver.class.getName()).log(Level.SEVERE, null, ex);
-				}
-			}
-		}
-
-		public long getProduct() {
-			return a * b * c;
-		}
-
-		public long getSum() {
-			return a + b + c;
-		}
 	}
 }
