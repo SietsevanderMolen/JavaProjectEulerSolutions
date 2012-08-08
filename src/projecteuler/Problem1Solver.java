@@ -33,7 +33,7 @@ public class Problem1Solver extends AbstractProblem {
 	 * @return The sum of all multiples of 3 or 5 below 1000
 	 */
 	@Override
-	public long _solve() {
+	public long solve() {
 		int tmp = 0;
 		for (int i = 0; i < 1000; i++) {
 			if (i % 3 == 0 || i % 5 == 0) {

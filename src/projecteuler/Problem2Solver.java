@@ -28,8 +28,46 @@ public class Problem2Solver extends AbstractProblem {
 	}
 
 	@Override
-	long _solve() {
+	long solve() {
 		long tmp = 0;
+		long fib = 0;
+		int i = 1;
+
+		while (fib < 4000000) {
+			fib = fastFib(i);
+			i++;
+			if (fib % 2 == 0) {
+				tmp += fib;
+			}
+		}
 		return tmp;
+	}
+
+	/**
+	 * Recursively calculate the nth Fibonacci number.
+	 *
+	 * @param n The term to compute
+	 * @return the nth Fibonacci number
+	 */
+	static long recursiveFib(int k) {
+		if (k <= 2) {
+			return 1;
+		} else {
+			return recursiveFib(k - 1) + recursiveFib(k - 2);
+		}
+	}
+
+	/**
+	 * Use the math library to calculate the nth Fibonacci number
+	 *
+	 * @param n The term to compute
+	 * @return the nth Fibonacci number
+	 */
+	public long fastFib(int n) {
+		double termA = Math.pow((1 + Math.sqrt(5)) / 2, n);
+		double termB = Math.pow((1 - Math.sqrt(5)) / 2, n);
+		double factor = 1 / Math.sqrt(5);
+
+		return Math.round(factor * (termA - termB));
 	}
 }
