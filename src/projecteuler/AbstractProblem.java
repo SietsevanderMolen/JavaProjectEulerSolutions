@@ -45,7 +45,7 @@ abstract class AbstractProblem {
 		// Do specified number of runs
 		for (int i = 0; i < 20; i++) {
 			stopwatch.start();
-			_solve();
+			solve();
 			stopwatch.stop();
 			avgTime += stopwatch.getElapsedTime();
 			stopwatch.reset();
@@ -70,7 +70,7 @@ abstract class AbstractProblem {
 	@Override
 	public String toString() {
 		setDescription();
-		solve();
+		_solve();
 		return description + System.lineSeparator() + "Got answer " + getAnswer() + " in " + getAverageNanosecondsTaken() / 1000000.0 + " milliseconds";
 	}
 }
