@@ -30,7 +30,9 @@ public class Problem2Solver extends AbstractProblem {
 	@Override
 	long solve() {
 		long tmp = 0;
-		int fib = 0, i = 1;
+		long fib = 0;
+		int i = 1;
+		
 		while (fib < 4000000) {
 			fib = fib(i);
 			i++;
@@ -40,24 +42,18 @@ public class Problem2Solver extends AbstractProblem {
 		}
 		return tmp;
 	}
-	
-	    /**
-     * Recursively calculate the kth Fibonacci number.
-     *
-     * @param k indicates which Fibonacci number to compute.
-     * @return the kth Fibonacci number.
-     */
-    static int fib(int k) {
 
-	// Base Case:
-	//   If k <= 2 then fib(k) = 1.
-	if (k <= 2) {
-	    return 1;
+	/**
+	 * Recursively calculate the nth Fibonacci number.
+	 *
+	 * @param n The term to compute
+	 * @return the nth Fibonacci number
+	 */
+	static long fib(int k) {
+		if (k <= 2) {
+			return 1;
+		} else {
+			return fib(k - 1) + fib(k - 2);
+		}
 	}
-	// Recursive Case:
-	//   If k > 2 then fib(k) = fib(k-1) + fib(k-2).
-	else {
-	    return fib(k-1) + fib(k-2);
-	} 
-    }
 }
