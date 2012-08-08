@@ -25,17 +25,17 @@ import projecteuler.util.Stopwatch;
  */
 abstract class AbstractProblem {
 
-	Stopwatch stopwatch = new Stopwatch();
-	long nsTaken = 0;
-	long answer = 0;
+	private Stopwatch stopwatch = new Stopwatch();
+	private long nsTaken = 0;
+	private long answer = 0;
 	private int runs = 20;
-	String description;
+	protected String description;
 
-	public long getAverageNanosecondsTaken() {
+	protected long getAverageNanosecondsTaken() {
 		return nsTaken;
 	}
 
-	public long getAnswer() {
+	protected long getAnswer() {
 		return answer;
 	}
 
