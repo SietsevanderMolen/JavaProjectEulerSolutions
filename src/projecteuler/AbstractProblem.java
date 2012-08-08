@@ -19,8 +19,8 @@ package projecteuler;
 import projecteuler.util.Stopwatch;
 
 /**
- * An abstract description of a Project Euler problem.
- * This should make the actual problem classes a bit cleaner.
+ * An abstract description of a Project Euler problem. This should make the actual problem classes a bit cleaner.
+ *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
 abstract class AbstractProblem {
@@ -28,6 +28,7 @@ abstract class AbstractProblem {
 	Stopwatch stopwatch = new Stopwatch();
 	long nsTaken = 0;
 	long answer = 0;
+	private int runs = 20;
 	String description;
 
 	public long getAverageNanosecondsTaken() {
@@ -43,14 +44,14 @@ abstract class AbstractProblem {
 	protected void benchmark() {
 		long avgTime = 0;
 		// Do specified number of runs
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < runs; i++) {
 			stopwatch.start();
 			solve();
 			stopwatch.stop();
 			avgTime += stopwatch.getElapsedTime();
 			stopwatch.reset();
 		}
-		nsTaken = avgTime / 20;
+		nsTaken = avgTime / runs;
 	}
 
 	/**
@@ -71,6 +72,7 @@ abstract class AbstractProblem {
 	public String toString() {
 		setDescription();
 		_solve();
-		return description + System.lineSeparator() + "Got answer " + getAnswer() + " in " + getAverageNanosecondsTaken() / 1000000.0 + " milliseconds";
+		return description + System.lineSeparator() + "* Got answer " + getAnswer() + 
+			" in " + getAverageNanosecondsTaken() / 1000000.0 + " milliseconds average. (after " + runs + " runs)";
 	}
 }
