@@ -28,7 +28,7 @@ public class Problem2Solver extends AbstractProblem {
 	}
 
 	@Override
-	long _solve() {
+	long solve() {
 		long tmp = 0;
 		return tmp;
 	}

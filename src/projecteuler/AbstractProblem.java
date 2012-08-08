@@ -58,13 +58,13 @@ abstract class AbstractProblem {
 	 *
 	 * @return The answer to this problem as a long
 	 */
-	abstract long _solve();
+	abstract long solve();
 
-	private void solve() {
+	private void _solve() {
 		// Do a couple of test runs to benchmark the algorithm
 		benchmark();
 		// Solve the problem and save the answer
-		answer = _solve();
+		answer = solve();
 	}
 
 	@Override
