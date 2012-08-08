@@ -32,9 +32,9 @@ public class Problem2Solver extends AbstractProblem {
 		long tmp = 0;
 		long fib = 0;
 		int i = 1;
-		
+
 		while (fib < 4000000) {
-			fib = fastfib(i);
+			fib = fastFib(i);
 			i++;
 			if (fib % 2 == 0) {
 				tmp += fib;
@@ -49,20 +49,21 @@ public class Problem2Solver extends AbstractProblem {
 	 * @param n The term to compute
 	 * @return the nth Fibonacci number
 	 */
-	static long fib(int k) {
+	static long recursiveFib(int k) {
 		if (k <= 2) {
 			return 1;
 		} else {
-			return fib(k - 1) + fib(k - 2);
+			return recursiveFib(k - 1) + recursiveFib(k - 2);
 		}
 	}
 
 	/**
 	 * Use the math library to calculate the nth Fibonacci number
+	 *
 	 * @param n The term to compute
 	 * @return the nth Fibonacci number
 	 */
-	public long fastfib(int n) {
+	public long fastFib(int n) {
 		double termA = Math.pow((1 + Math.sqrt(5)) / 2, n);
 		double termB = Math.pow((1 - Math.sqrt(5)) / 2, n);
 		double factor = 1 / Math.sqrt(5);
