@@ -30,5 +30,6 @@ public class ProjectEuler {
 		System.out.println(new Problem2Solver().toString());
 		System.out.println(new Problem3Solver().toString());
 		System.out.println(new Problem4Solver().toString());
+		System.out.println(new Problem5Solver().toString());
 	}
 }
