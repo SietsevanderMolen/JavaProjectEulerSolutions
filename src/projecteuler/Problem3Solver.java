@@ -17,17 +17,36 @@
 package projecteuler;
 
 /**
- * These are my solutions for Project Euler
+ * The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?
+ *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class ProjectEuler {
+public class Problem3Solver extends AbstractProblem {
+
+	@Override
+	void setDescription() {
+		this.description = "What is the largest prime factor of the number 600851475143?";
+	}
+
+	@Override
+	long solve() {
+		return largestPrimeFactor(600851475143L);
+	}
 
 	/**
-	 * @param args the command line arguments
+	 * Calculate the largest prime of a given number
+	 *
+	 * @param number the number to calculate the largest prime of
+	 * @return the largest prime of the given number
 	 */
-	public static void main(String[] args) {
-		System.out.println(new Problem1Solver().toString());
-		System.out.println(new Problem2Solver().toString());
-		System.out.println(new Problem3Solver().toString());
+	public int largestPrimeFactor(long number) {
+		int i;
+		for (i = 2; i <= number; i++) {
+			if (number % i == 0) {
+				number /= i;
+				i--;
+			}
+		}
+		return i;
 	}
 }
