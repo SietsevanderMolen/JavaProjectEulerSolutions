@@ -39,7 +39,7 @@ public class Problem3Solver extends AbstractProblem {
 	 * @param number the number to calculate the largest prime of
 	 * @return the largest prime of the given number
 	 */
-	public int largestPrimeFactor(long number) {
+	private int largestPrimeFactor(long number) {
 		int i;
 		for (i = 2; i <= number; i++) {
 			if (number % i == 0) {
