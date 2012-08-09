@@ -14,39 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
-
-import projecteuler.util.PrimeBuffer;
+package projecteuler.interfaces;
 
 /**
- * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
- * What is the 10 001st prime number?
  *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem7Solver extends AbstractProblem {
-
-	@Override
-	void setDescription() {
-		this.description = "What is the 10 001st prime number?";
-	}
-
-	@Override
-	long solve() {
-		boolean[] buffer = new boolean[150000];
-		PrimeBuffer primeBuffer = new PrimeBuffer(150000);
-		primeBuffer.sieveUsingAtkins();
-
-		long counter = 0;
-		for (long i = 2; i < buffer.length; ++i) {
-			if (primeBuffer.checkForPrimality((int)i)) {
-				counter++;
-				// Is this the 10001st prime?
-				if (counter == 10001) {
-					return i;
-				}
-			}
-		}
-		return 0;
-	}
+public interface IBenchmarkable {
+	/**
+	 * runs a benchmark
+	 * @return the time taken to benchmark this in nanoseconds
+	 */
+	public abstract long benchmark(int runs);
 }

@@ -14,7 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
+package projecteuler.problems1_10;
+
+import projecteuler.abstracts.Problem;
 
 /**
  * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. What is the smallest positive number that is
@@ -22,18 +24,17 @@ package projecteuler;
  *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem5Solver extends AbstractProblem {
+public class Problem5Solver extends Problem {
 
 	private long[] increment;
 	private long[] sum;
 	
-	@Override
-	void setDescription() {
-		this.description = "What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?";
+	public Problem5Solver() {
+		super(5, "What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?", 232792560L);
 	}
 
 	@Override
-	long solve() {
+	public long solve() {
 		long[] input = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 		return leastCommonMultiple(input);
 	}

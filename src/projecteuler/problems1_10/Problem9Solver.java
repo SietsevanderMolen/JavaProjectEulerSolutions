@@ -14,10 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
+package projecteuler.problems1_10;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import projecteuler.abstracts.Problem;
 import projecteuler.util.Triplet;
 
 /**
@@ -29,15 +28,14 @@ import projecteuler.util.Triplet;
  * 
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem9Solver extends AbstractProblem {
-
-	@Override
-	void setDescription() {
-		this.description = "There exists exactly one Pythagorean triplet for which a + b + c = 1000, find the product abc.";
+public class Problem9Solver extends Problem {
+	
+	public Problem9Solver() {
+		super(9, "There exists exactly one Pythagorean triplet for which a + b + c = 1000, find the product abc.", 31875000L);
 	}
 
 	@Override
-	long solve() {
+	public long solve() {
 		// Generate all triplets where legs n and m < 100
 		for (int m = 2; m < 25; m++) {
 			for (int n = 1; n < 25; n++) {

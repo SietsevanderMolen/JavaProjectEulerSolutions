@@ -14,39 +14,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
+package projecteuler.problems1_10;
+
+import projecteuler.abstracts.Problem;
+import projecteuler.util.PrimeBuffer;
 
 /**
- * The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?
+ * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+ * What is the 10 001st prime number?
  *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem3Solver extends AbstractProblem {
-
-	@Override
-	void setDescription() {
-		this.description = "What is the largest prime factor of the number 600851475143?";
+public class Problem7Solver extends Problem {
+	
+	public Problem7Solver() {
+		super(7, "What is the 10 001st prime number?", 104743L);
 	}
 
 	@Override
-	long solve() {
-		return largestPrimeFactor(600851475143L);
-	}
+	public long solve() {
+		boolean[] buffer = new boolean[150000];
+		PrimeBuffer primeBuffer = new PrimeBuffer(150000);
+		primeBuffer.sieveUsingAtkins();
 
-	/**
-	 * Calculate the largest prime of a given number
-	 *
-	 * @param number the number to calculate the largest prime of
-	 * @return the largest prime of the given number
-	 */
-	private int largestPrimeFactor(long number) {
-		int i;
-		for (i = 2; i <= number; i++) {
-			if (number % i == 0) {
-				number /= i;
-				i--;
+		long counter = 0;
+		for (long i = 2; i < buffer.length; ++i) {
+			if (primeBuffer.checkForPrimality((int)i)) {
+				counter++;
+				// Is this the 10001st prime?
+				if (counter == 10001) {
+					return i;
+				}
 			}
 		}
-		return i;
+		return 0;
 	}
 }
