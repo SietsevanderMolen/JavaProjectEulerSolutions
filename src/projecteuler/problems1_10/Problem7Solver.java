@@ -28,25 +28,13 @@ import projecteuler.util.PrimeBuffer;
 public class Problem7Solver extends Problem {
 	
 	public Problem7Solver() {
-		super(7, "What is the 10 001st prime number?", 104743L);
+		super(7, "What is the 10 001st prime number? (solved using Eratosthenes' sieve)", 104743L);
 	}
 
 	@Override
 	public long solve() {
-		boolean[] buffer = new boolean[150000];
 		PrimeBuffer primeBuffer = new PrimeBuffer(150000);
-		primeBuffer.sieveUsingAtkins();
-
-		long counter = 0;
-		for (long i = 2; i < buffer.length; ++i) {
-			if (primeBuffer.checkForPrimality((int)i)) {
-				counter++;
-				// Is this the 10001st prime?
-				if (counter == 10001) {
-					return i;
-				}
-			}
-		}
-		return 0;
+		primeBuffer.sieveUsingEratosthenes();
+		return primeBuffer.getNthPrime(10001);
 	}
 }

@@ -16,15 +16,39 @@
  */
 package projecteuler.util;
 
+import java.util.Arrays;
+
 /**
+ * This is a boolean array where all the primes are true. (Some people prefer to use a BitSet here, because a BitSet uses just 1 bit per boolean, whereas in
+ * contrast a boolean[] uses a byte per boolean. It's superior speed of operation made me use an array of booleans though.)
  *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
 public class PrimeBuffer {
-	private boolean[] _buffer;
+
+	public boolean[] _buffer;
 
 	public PrimeBuffer(int bufferSize) {
 		this._buffer = new boolean[bufferSize];
+	}
+
+	/**
+	 * Returns the nth prime from the buffer
+	 * @param n
+	 * @return 
+	 */
+	public long getNthPrime(int n) {
+		int counter = 0;
+		for (long i = 2; i < _buffer.length; ++i) {
+			if (_buffer[(int)i]) {
+				counter++;
+				// Is this the 10001st prime?
+				if (counter == n) {
+					return i;
+				}
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -33,14 +57,12 @@ public class PrimeBuffer {
 	 * @param prime the number to test
 	 * @return true if prime is a prime number
 	 */
-	public boolean checkForPrimality(int prime) {
-		return this._buffer[prime];
+	public boolean checkForPrimality(long prime) {
+		return this._buffer[(int)prime];
 	}
 
 	/**
 	 * Simple implementation of Atkin's sieve
-	 *
-	 * @param buffer a boolean array containing
 	 */
 	public void sieveUsingAtkins() {
 		int end = _buffer.length;
@@ -87,5 +109,22 @@ public class PrimeBuffer {
 
 		_buffer[3] = true;
 		_buffer[2] = true;
-	}	
+	}
+
+	/**
+	 * Simple implementation of Eratosthenes' sieve
+	 */
+	public void sieveUsingEratosthenes() {
+		Arrays.fill(_buffer, Boolean.TRUE);
+		_buffer[0] = false;
+		_buffer[1] = false;
+
+		for (int i = 0; i * i < _buffer.length; i++) {
+			if (this._buffer[i]) {
+				for (int j = i * i; j < _buffer.length; j += i) {
+					_buffer[j] = false;
+				}
+			}
+		}
+	}
 }
