@@ -16,6 +16,8 @@
  */
 package projecteuler;
 
+import projecteuler.util.PrimeBuffer;
+
 /**
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
  * What is the 10 001st prime number?
@@ -32,11 +34,12 @@ public class Problem7Solver extends AbstractProblem {
 	@Override
 	long solve() {
 		boolean[] buffer = new boolean[150000];
-		atkinsSieve(buffer);
+		PrimeBuffer primeBuffer = new PrimeBuffer(150000);
+		primeBuffer.sieveUsingAtkins();
 
 		long counter = 0;
 		for (long i = 2; i < buffer.length; ++i) {
-			if (buffer[(int) i]) {
+			if (primeBuffer.getAt((int)i)) {
 				counter++;
 				if (counter == 10001) {
 					return i;
@@ -44,57 +47,5 @@ public class Problem7Solver extends AbstractProblem {
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * Simple implementation of Atkin's sieve
-	 *
-	 * @param buffer a boolean array containing
-	 */
-	private void atkinsSieve(boolean[] buffer) {
-		int end = buffer.length;
-		double limit = Math.sqrt(end);
-
-		int n, x, x2, x2_3, y, y2;
-		int k, i, m;
-
-		// put in candidate primes:
-		// integers which have an odd number of
-		// representations by certain quadratic forms
-		for (x = 1; x <= limit; ++x) {
-			x2 = x * x;
-			x2_3 = 3 * x2;
-
-			for (y = 1; y <= limit; ++y) {
-				y2 = y * y;
-				n = 4 * x2 + y2;
-				if ((n < end) && (n % 12 == 1 || n % 12 == 5)) {
-					buffer[n] = !buffer[n];
-				}
-
-				n = x2_3 + y2; /* 3x^2 + y^2 */
-				if ((n < end) && (n % 12 == 7)) {
-					buffer[n] = !buffer[n];
-				}
-
-				n = x2_3 - y2; /* 3x^2 - y^2 */
-				if ((x > y) && (n < end) && (n % 12 == 11)) {
-					buffer[n] = !buffer[n];
-				}
-			}
-		}
-
-		// Eliminate composites by actually sieving
-		for (n = 5; n <= limit; n += 2) {
-			if (buffer[n]) {
-				k = n * n;
-				for (i = 1, m = k; m < end; i += 2, m = i * k) {
-					buffer[m] = false;
-				}
-			}
-		}
-
-		buffer[3] = true;
-		buffer[2] = true;
 	}
 }
