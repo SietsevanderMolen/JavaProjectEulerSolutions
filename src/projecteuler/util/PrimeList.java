@@ -14,39 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
+
+
+package projecteuler.util;
 
 /**
- * The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?
- *
+ * A list of consecutive prime numbers
+ * 
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem3Solver extends AbstractProblem {
+public class PrimeList {
 
-	@Override
-	void setDescription() {
-		this.description = "What is the largest prime factor of the number 600851475143?";
+	public PrimeList(int numberOfPrimes) {
 	}
-
-	@Override
-	long solve() {
-		return largestPrimeFactor(600851475143L);
-	}
-
-	/**
-	 * Calculate the largest prime of a given number
-	 *
-	 * @param number the number to calculate the largest prime of
-	 * @return the largest prime of the given number
-	 */
-	public int largestPrimeFactor(long number) {
-		int i;
-		for (i = 2; i <= number; i++) {
-			if (number % i == 0) {
-				number /= i;
-				i--;
-			}
-		}
-		return i;
-	}
+	
 }

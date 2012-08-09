@@ -14,37 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package projecteuler;
-
-import projecteuler.util.Stopwatch;
+package projecteuler.interfaces;
 
 /**
- * If we list all the natural numbers below 10 that are multiples of 3 or 5, we
- * get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the
- * multiples of 3 or 5 below 1000.
  *
  * @author Sietse van der Molen <sietse@vdmolen.eu>
  */
-public class Problem1Solver extends AbstractProblem {
-
+public interface IBenchmarkable {
 	/**
-	 * The obvious way to solve a problem like this
-	 *
-	 * @return The sum of all multiples of 3 or 5 below 1000
+	 * runs a benchmark
+	 * @return the time taken to benchmark this in nanoseconds
 	 */
-	@Override
-	public long solve() {
-		int tmp = 0;
-		for (int i = 0; i < 1000; i++) {
-			if (i % 3 == 0 || i % 5 == 0) {
-				tmp += i;
-			}
-		}
-		return tmp;
-	}
-
-	@Override
-	void setDescription() {
-		this.description = "Find the sum of all the multiples of 3 or 5 below 1000.";
-	}
+	public abstract long benchmark(int runs);
 }
