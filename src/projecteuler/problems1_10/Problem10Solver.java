@@ -16,7 +16,9 @@
  */
 package projecteuler.problems1_10;
 
+import java.math.BigInteger;
 import projecteuler.abstracts.Problem;
+import projecteuler.util.PrimeBuffer;
 
 /**
  * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
@@ -32,7 +34,15 @@ public class Problem10Solver extends Problem {
 	
 	@Override
 	public long solve() {
-		return 0L;
+		long counter = 0;
+		
+		PrimeBuffer primeBuffer = new PrimeBuffer(2000000);
+		primeBuffer.sieveUsingEratosthenes();
+		for(long i = 0; i < 2000000; i++) {
+			if(primeBuffer.checkForPrimality(i)) {
+				counter += i;
+			}
+		}
+		return counter;
 	}
-
 }

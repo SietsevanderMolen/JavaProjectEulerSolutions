@@ -50,6 +50,6 @@ public class ProjectEuler {
 		problemManager.addProblem(new Problem9Solver());
 		problemManager.addProblem(new Problem10Solver());
 
-		problemManager.benchmarkAll(20);
+		problemManager.benchmarkAll(50);
 	}
 }
