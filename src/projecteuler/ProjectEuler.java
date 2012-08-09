@@ -16,6 +16,7 @@
  */
 package projecteuler;
 
+import projecteuler.problems10_20.Problem11Solver;
 import projecteuler.problems1_10.Problem10Solver;
 import projecteuler.problems1_10.Problem1Solver;
 import projecteuler.problems1_10.Problem2Solver;
@@ -49,6 +50,7 @@ public class ProjectEuler {
 		problemManager.addProblem(new Problem8Solver());
 		problemManager.addProblem(new Problem9Solver());
 		problemManager.addProblem(new Problem10Solver());
+		problemManager.addProblem(new Problem11Solver());
 
 		problemManager.benchmarkAll(50);
 	}

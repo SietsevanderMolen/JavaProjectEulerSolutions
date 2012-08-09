@@ -34,11 +34,12 @@ public class Problem10Solver extends Problem {
 	
 	@Override
 	public long solve() {
-		long counter = 0;
+		// Initialise to 2 because we are going to skip it in the loop
+		long counter = 2;
 		
 		PrimeBuffer primeBuffer = new PrimeBuffer(2000000);
 		primeBuffer.sieveUsingEratosthenes();
-		for(long i = 0; i < 2000000; i++) {
+		for(long i = 3; i < 2000000; i+=2) {
 			if(primeBuffer.checkForPrimality(i)) {
 				counter += i;
 			}
