@@ -28,14 +28,15 @@ public class PrimeBuffer {
 	}
 
 	/**
-	 * Returns the boolean at the specified position
-	 * @param pos
-	 * @return 
+	 * Checks if the given number is a prime number
+	 *
+	 * @param prime the number to test
+	 * @return true if prime is a prime number
 	 */
-	public boolean getAt(int pos) {
-		return this._buffer[pos];
+	public boolean checkForPrimality(int prime) {
+		return this._buffer[prime];
 	}
-	
+
 	/**
 	 * Simple implementation of Atkin's sieve
 	 *

@@ -39,8 +39,9 @@ public class Problem7Solver extends AbstractProblem {
 
 		long counter = 0;
 		for (long i = 2; i < buffer.length; ++i) {
-			if (primeBuffer.getAt((int)i)) {
+			if (primeBuffer.checkForPrimality((int)i)) {
 				counter++;
+				// Is this the 10001st prime?
 				if (counter == 10001) {
 					return i;
 				}
